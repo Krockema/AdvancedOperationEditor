@@ -14,7 +14,9 @@ function selectionChanged(graph, mxUtils) {
     var cell = graph.getSelectionCell();
 
     if (cell == null) {
-        mxUtils.writeln(div, 'Nothing selected.');
+        var center = document.createElement('center');
+        mxUtils.writeln(center, 'Select an Item to Edit.');
+        div.appendChild(center);
     }
     else {
         // Writes the title

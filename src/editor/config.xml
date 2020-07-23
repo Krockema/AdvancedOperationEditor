@@ -2,7 +2,7 @@
 <mxEditor>
   <Array as="templates">
     <add as="grouped">
-      <ComplexNode label="SRO2" href="">
+      <ComplexNode label="RoutingOperation" href="">
         <mxCell vertex="1" style="shape=swimlane;startSize=20">
           <mxGeometry as="geometry" width="220" height="260" />
         </mxCell>

@@ -34,3 +34,9 @@ table.mxPopupMenu hr {
 table.mxPopupMenu tr {
 	font-size: 4pt;
 }
+
+center {
+	font-weight: bold;
+	border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
+}
