@@ -54,12 +54,12 @@
                 customizeElementStyle(graph);
 
                 // create an editor ?! - // Seems not required, did not figure out how this thing works yet.
-                // var config = mxUtils.load('src/editor/config.xml').getDocumentElement();
-                // var editor = new mxEditor(config);
+                var config = mxUtils.load('src/editor/config.xml').getDocumentElement();
+                var editor = new mxEditor(config);
                 
                 // create an Toolbar
                 var tbContainer = document.getElementById('graphToolbarContainer');
-                var toolbar = new mxToolbar(tbContainer); //, editor);
+                var toolbar = new mxToolbar(tbContainer, editor);
                 toolbar.enabled = false;
                 
                 // minimap initializer
@@ -100,8 +100,8 @@
 
                 // Create Editor Items
                 toolbar.addLine();
-                addVertex(graph, toolbar, 'src/editor/shapes/group.png', 220, 260, 'shape=swimlane;startSize=20;');
-                addVertex(graph, toolbar, 'src/editor/shapes/rec.png', 100, 40, '');
+                addToolbarItem(graph, toolbar, editor.templates["grouped"], 'src/editor/shapes/group.png');
+                addToolbarItem(graph, toolbar, editor.templates["operation"], 'src/editor/shapes/rec.png');
                 toolbar.addLine();
 
                 // Get the default parent cell for inserting a new cell
