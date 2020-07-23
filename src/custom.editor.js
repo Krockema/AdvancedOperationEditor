@@ -26,10 +26,10 @@ function selectionChanged(graph, mxUtils) {
         // Creates the form from the attributes of the user object
         var form = new mxForm();
 
-        var attrs = cell.value.attributes;
+        var attrs = cell.value.children[0].getAttributeNames();
 
         for (var i = 0; i < attrs.length; i++) {
-            createTextField(graph, form, cell, attrs[i]);
+            createTextField(graph, form, cell.value.children[0], attrs[i]);
         }
 
         div.appendChild(form.getTable());
@@ -40,19 +40,19 @@ function selectionChanged(graph, mxUtils) {
 /**
  * Creates the textfield for the given property.
  */
-function createTextField(graph, form, cell, attribute) {
-    var input = form.addText(attribute.nodeName + ':', attribute.nodeValue);
+function createTextField(graph, form, cell, attrName) {
+    var input = form.addText(attrName + ':', cell.getAttributeNode(attrName).value);
 
     var applyHandler = function () {
         var newValue = input.value || '';
-        var oldValue = cell.getAttribute(attribute.nodeName, '');
+        var oldValue = cell.getAttribute(attrName, '');
 
         if (newValue != oldValue) {
             graph.getModel().beginUpdate();
 
             try {
                 var edit = new mxCellAttributeChange(
-                    cell, attribute.nodeName,
+                    cell, attrName,
                     newValue);
                 graph.getModel().execute(edit);
                 graph.updateCellSize(cell);
@@ -83,4 +83,21 @@ function createTextField(graph, form, cell, attribute) {
         // explicitely where we do the graph.focus above.
         mxEvent.addListener(input, 'blur', applyHandler);
     }
+}
+/*
+ ** Overrides method to provide a cell label in the display
+ */
+function setLableFunction(graph, mxUtils) {
+    graph.convertValueToString = function(cell) {
+        if (mxUtils.isNode(cell.value)) {
+            if (cell.value.nodeName.toLowerCase() == 'complexnode') {
+                var type = cell.value.children[0].getAttribute("Type", "");
+                var repeated = cell.value.children[0].getAttribute("Repeat", "");
+                return type + ' (0/' + repeated + ')';
+            } else if (cell.value.nodeName.toLowerCase() == 'singlenode') {
+                return cell.value.children[0].getAttribute("Name");
+            }
+        }
+        return '';
+    };
 }

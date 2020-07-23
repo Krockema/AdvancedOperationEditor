@@ -1,21 +1,21 @@
+<!-- ATTENTION: do not set VALUE of mxCell, it will remove any siblings!  #MKTO -->
 <mxEditor>
   <Array as="templates">
     <add as="grouped">
-      <Rect label="SRO" href="">
-        <!-- ATTENTION: do not set VALUE of mxCell, it will remove any siblings!  #MKTO -->
+      <ComplexNode label="SRO2" href="">
         <mxCell vertex="1" style="shape=swimlane;startSize=20">
           <mxGeometry as="geometry" width="220" height="260" />
         </mxCell>
-        <attributes type="SRO" /> 
-      </Rect>
+        <attributes Type="SRO" Repeat="1" /> 
+      </ComplexNode>
     </add>
     <add as="operation">
-      <Rect label="Operation" href="">
+      <SingleNode label="Operation" href="">
         <mxCell vertex="1">
           <mxGeometry as="geometry" width="100" height="40"/>
         </mxCell>
-        <attributes type="Operation" />
-      </Rect>
+        <attributes Type="Operation" Name=" undefined " ExternalLink="none"/>
+      </SingleNode>
     </add>
   </Array>
 </mxEditor>

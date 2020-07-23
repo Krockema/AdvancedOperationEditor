@@ -8,7 +8,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/custom.menu.css">
-    
+
 
 
     <!-- If not in the same directory, set the base path of the library -->
@@ -27,6 +27,7 @@
     <script type="text/javascript" src="src/custom.tooltip.js"></script>
     <script type="text/javascript" src="src/custom.popupmenu.js"></script>
     <script type="text/javascript" src="src/custom.xmlexporter.js"></script>
+    <script type="text/javascript" src="src/custom.editor.js"></script>
     <script type="text/javascript" src="src/custom.styling.js"></script>
 
     <!-- Hello World instance -->
@@ -45,58 +46,55 @@
                 var model = new mxGraphModel();
                 graph = new mxGraph(container, model);
                 graph.dropEnabled = true;
-                
-				// Changes some default colors
-				mxConstants.HANDLE_FILLCOLOR = '#99ccff';
-				mxConstants.HANDLE_STROKECOLOR = '#0088cf';
+
+                // Changes some default colors
+                mxConstants.HANDLE_FILLCOLOR = '#99ccff';
+                mxConstants.HANDLE_STROKECOLOR = '#0088cf';
                 mxConstants.VERTEX_SELECTION_COLOR = '#00a8ff';
-                // more Styling 
+                // more Styling
                 customizeElementStyle(graph);
 
                 // create an editor ?! - // Seems not required, did not figure out how this thing works yet.
                 var config = mxUtils.load('src/editor/config.xml').getDocumentElement();
                 var editor = new mxEditor(config);
-                
+
                 // create an Toolbar
                 var tbContainer = document.getElementById('graphToolbarContainer');
                 var toolbar = new mxToolbar(tbContainer, editor);
                 toolbar.enabled = false;
-                
+
                 // minimap initializer
                 var outline = document.getElementById('outlineContainer');
                 var outln = new mxOutline(graph, outline);
-                
+
                 // make items connectable and create image for connector
                 mxConnectionHandler.prototype.connectImage = new mxImage('src/images/connector_grey.png', 16, 16);
                 graph.setConnectable(true);
                 graph.setMultigraph(true);
-				graph.setTooltips(true);
-                
-                // Binds keycodes to actionnames in an editor.  
+                graph.setTooltips(true);
+
+                // Binds keycodes to actionnames in an editor.
                 var keyHandler = new mxDefaultKeyHandler(graph);
                 // Allow frame selection
                 new mxRubberband(graph);
 
 
-				// Matches DnD inside the graph
-				mxDragSource.prototype.getDropTarget = function(graph, x, y)
-				{
-					var cell = graph.getCellAt(x, y);
-					
-					if (!graph.isValidDropTarget(cell))
-					{
-						cell = null;
-					}
-					
-					return cell;
+                // Matches DnD inside the graph
+                mxDragSource.prototype.getDropTarget = function (graph, x, y) {
+                    var cell = graph.getCellAt(x, y);
+
+                    if (!graph.isValidDropTarget(cell)) {
+                        cell = null;
+                    }
+
+                    return cell;
                 };
-                
+
                 // Installs a popupmenu handler using local function and Disables built-in context menu
-				mxEvent.disableContextMenu(container);
-				graph.popupMenuHandler.factoryMethod = function(menu, cell, evt)
-				{
-					return createPopupMenu(graph, menu, cell, evt);
-				};
+                mxEvent.disableContextMenu(container);
+                graph.popupMenuHandler.factoryMethod = function (menu, cell, evt) {
+                    return createPopupMenu(graph, menu, cell, evt);
+                };
 
                 // Create Editor Items
                 toolbar.addLine();
@@ -107,6 +105,18 @@
                 // Get the default parent cell for inserting a new cell
                 // usually the first child of root (ie layer 0)
                 var parent = graph.getDefaultParent();
+
+
+                // Implements a properties panel that uses
+                // mxCellAttributeChange to change properties
+                graph.getSelectionModel().addListener(mxEvent.CHANGE, function (sender, evt) {
+                    selectionChanged(graph, mxUtils);
+                });
+                // justyfy Lables according to Type
+                setLableFunction(graph, mxUtils);
+
+
+                selectionChanged(graph, mxUtils);
             }
         }
     </script>
@@ -146,8 +156,11 @@
                 <div class="col-sm-2 col-md-1">
                     <div id="graphToolbarContainer" style="margin: auto; width: 70px;"></div>
                 </div>
-                <div class="col-sm-10 col-md-11">
-                    <div id="graphContainer" style="width:100%;height:600;overflow:scroll;background:url('src/images/grid.svg')"></div>
+                <div class="col-sm-8 col-md-9">
+                    <div id="graphContainer" style="width:100%;height:600px;overflow:scroll;background:url('src/images/grid.svg')"></div>
+                </div>
+                <div class="col-md-2">
+                    <div id="properties" style="padding-top: 250px"> </div>
                 </div>
             </div>
         </div>
