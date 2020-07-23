@@ -13,7 +13,7 @@ function selectionChanged(graph, mxUtils) {
     // Gets the selection cell
     var cell = graph.getSelectionCell();
 
-    if (cell == null) {
+    if (cell == null || cell.edge) {
         var center = document.createElement('center');
         mxUtils.writeln(center, 'Select an Item to Edit.');
         div.appendChild(center);
