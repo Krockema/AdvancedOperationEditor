@@ -1,7 +1,7 @@
 /**
  * Updates the properties panel
  */
-function selectionChanged(graph, mxUtils) {
+function selectionChanged(graph, mxUtils, mxEvent) {
     var div = document.getElementById('properties');
 
     // Forces focusout in IE
@@ -31,7 +31,7 @@ function selectionChanged(graph, mxUtils) {
         var attrs = cell.value.children[0].getAttributeNames();
 
         for (var i = 0; i < attrs.length; i++) {
-            createTextField(graph, form, cell.value.children[0], attrs[i]);
+            createTextField(graph, form, cell, attrs[i], mxEvent);
         }
 
         div.appendChild(form.getTable());
@@ -42,7 +42,8 @@ function selectionChanged(graph, mxUtils) {
 /**
  * Creates the textfield for the given property.
  */
-function createTextField(graph, form, cell, attrName) {
+function createTextField(graph, form, parrent, attrName, mxEvent) {
+    var cell = parrent.value.children[0];
     var input = form.addText(attrName + ':', cell.getAttributeNode(attrName).value);
 
     var applyHandler = function () {
@@ -57,7 +58,9 @@ function createTextField(graph, form, cell, attrName) {
                     cell, attrName,
                     newValue);
                 graph.getModel().execute(edit);
-                graph.updateCellSize(cell);
+                // seems broken
+                setLabel(mxUtils, parrent);
+                graph.updateCellSize(parrent);
             }
             finally {
                 graph.getModel().endUpdate();
@@ -89,17 +92,21 @@ function createTextField(graph, form, cell, attrName) {
 /*
  ** Overrides method to provide a cell label in the display
  */
-function setLableFunction(graph, mxUtils) {
+function setLabelFunction(graph, mxUtils) {
     graph.convertValueToString = function(cell) {
-        if (mxUtils.isNode(cell.value)) {
-            if (cell.value.nodeName.toLowerCase() == 'complexnode') {
-                var type = cell.value.children[0].getAttribute("Type", "");
-                var repeated = cell.value.children[0].getAttribute("Repeat", "");
-                return type + ' (0/' + repeated + ')';
-            } else if (cell.value.nodeName.toLowerCase() == 'singlenode') {
-                return cell.value.children[0].getAttribute("Name");
-            }
-        }
-        return '';
+        return setLabel(mxUtils, cell);
     };
+}
+
+function setLabel(mxUtils, cell) {
+    if (mxUtils.isNode(cell.value)) {
+        if (cell.value.nodeName.toLowerCase() == 'complexnode') {
+            var type = cell.value.children[0].getAttribute("Type", "");
+            var repeated = cell.value.children[0].getAttribute("Repeat", "");
+            return type + ' (0/' + repeated + ')';
+        } else if (cell.value.nodeName.toLowerCase() == 'singlenode') {
+            return cell.value.children[0].getAttribute("Name");
+        }
+    }
+    return '';
 }

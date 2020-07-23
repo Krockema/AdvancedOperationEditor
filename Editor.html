@@ -110,13 +110,24 @@
                 // Implements a properties panel that uses
                 // mxCellAttributeChange to change properties
                 graph.getSelectionModel().addListener(mxEvent.CHANGE, function (sender, evt) {
-                    selectionChanged(graph, mxUtils);
+                    selectionChanged(graph, mxUtils, mxEvent);
                 });
                 // justyfy Lables according to Type
-                setLableFunction(graph, mxUtils);
+                setLabelFunction(graph, mxUtils);
+                selectionChanged(graph, mxUtils, mxEvent);
 
+                // override prefered cellsize to prevent minicells after value change.
+                var graphGetPreferredSizeForCell = graph.getPreferredSizeForCell;
+                graph.getPreferredSizeForCell = function (cell) {
+                    var result = graphGetPreferredSizeForCell.apply(this, arguments);
+                    var style = this.getCellStyle(cell);
 
-                selectionChanged(graph, mxUtils);
+                    if (style['minWidth'] > 0) {
+                        result.width = Math.max(style['minWidth'], result.width);
+                    }
+
+                    return result;
+                };
             }
         }
     </script>
