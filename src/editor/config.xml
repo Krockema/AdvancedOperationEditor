@@ -2,7 +2,8 @@
   <Array as="templates">
     <add as="grouped">
       <Rect label="SRO" href="">
-        <mxCell vertex="1" value="SRO" style="shape=swimlane;startSize=20">
+        <!-- ATTENTION: do not set VALUE of mxCell, it will remove any siblings!  #MKTO -->
+        <mxCell vertex="1" style="shape=swimlane;startSize=20">
           <mxGeometry as="geometry" width="220" height="260" />
         </mxCell>
         <attributes type="SRO" /> 
@@ -10,7 +11,7 @@
     </add>
     <add as="operation">
       <Rect label="Operation" href="">
-        <mxCell vertex="1" value="Operation">
+        <mxCell vertex="1">
           <mxGeometry as="geometry" width="100" height="40"/>
         </mxCell>
         <attributes type="Operation" />
