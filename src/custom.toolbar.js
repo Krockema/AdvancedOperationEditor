@@ -1,12 +1,4 @@
-var addVertex = function(graph, toolbar, icon, w, h, style)
-{
-    var vertex = new mxCell(null, new mxGeometry(0, 0, w, h), style);
-    vertex.setVertex(true);
-
-    addToolbarItem(graph, toolbar, vertex, icon);
-};
-
-function addToolbarItem(graph, toolbar, prototype, image)
+function addToolbarItem(graph, toolbar, prototype, image, id, infoText)
 {
     // Function that is executed when the image is dropped on
     // the graph. The cell argument points to the cell under
@@ -25,5 +17,22 @@ function addToolbarItem(graph, toolbar, prototype, image)
 
     // Creates the image which is used as the drag icon (preview)
     var img = toolbar.addMode(null, image, funct);
+    img.setAttribute("id", id);
+    img.setAttribute("data-toggle", "tooltip");
+    img.setAttribute("style", "width: 40px");
+    img.setAttribute("title", infoText);
     mxUtils.makeDraggable(img, graph, funct);
 }
+
+$(document).ready(function () {
+    $("#graphToolbarContainer img").tooltip({
+        placement: 'right',
+        template: '<div class="tooltip">' +
+            '<div class="tooltip-arrow"></div>' +
+                '<div class="tooltip-head">' +
+                    '<h3>Tool Info</h3>' +
+                '</div>' +
+            '<div class="tooltip-inner"></div>' +
+            '</div>'
+    });
+});
