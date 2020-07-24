@@ -10,6 +10,9 @@ function customizeElementStyle(graph)
     style[mxConstants.STYLE_FONTCOLOR] = 'black';
     style[mxConstants.STYLE_FONTSIZE] = '12';
     style[mxConstants.STYLE_SPACING] = 4;
+    style[mxConstants.STYLE_RESIZE_HEIGHT] = 0;
+    style[mxConstants.STYLE_SWIMLANE_FILLCOLOR] = 'white';
+    style[mxConstants.STYLE_STROKEWIDTH] = 2;
 
     // Creates the default style for edges
     style = graph.getStylesheet().getDefaultEdgeStyle();
@@ -19,4 +22,5 @@ function customizeElementStyle(graph)
     style[mxConstants.STYLE_ROUNDED] = true;
     style[mxConstants.STYLE_FONTCOLOR] = 'black';
     style[mxConstants.STYLE_FONTSIZE] = '10';
+    style[mxConstants.STYLE_STROKEWIDTH] = 2;
 }

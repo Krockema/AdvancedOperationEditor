@@ -2,11 +2,124 @@
   <root>
     <mxCell id="0" />
     <mxCell id="1" parent="0" />
-    <mxCell id="2" style="shape=swimlane;startSize=20;" vertex="1" parent="1">
-      <mxGeometry x="820" y="110" width="220" height="260" as="geometry" />
+    <ComplexNode label="RoutingOperation" href="" id="5">
+      <attributes Type="SRO" Name="" Repeat="1" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="1">
+        <mxGeometry x="40" y="20" width="600" height="710" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <ComplexNode label="RoutingOperation" href="" id="9">
+      <attributes Type="PRO" Name="Vorbereitungen" Repeat="10" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="5">
+        <mxGeometry x="100" y="40" width="380" height="310" as="geometry">
+          <mxRectangle x="20" y="60" width="220" height="38" as="alternateBounds" />
+        </mxGeometry>
+      </mxCell>
+    </ComplexNode>
+    <ComplexNode label="RoutingOperation" href="" id="11">
+      <attributes Type="SRO" Name="" Repeat="10" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="9">
+        <mxGeometry x="20" y="50" width="320" height="90" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <SingleNode label="Operation" href="" id="17">
+      <attributes Type="Operation" Name="Zerspanen" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="11">
+        <mxGeometry x="50" y="50" width="100" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <SingleNode label="Operation" href="" id="18">
+      <attributes Type="Operation" Name="Entgraten" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="11">
+        <mxGeometry x="190" y="50" width="100" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <mxCell id="19" edge="1" parent="11" source="17" target="18">
+      <mxGeometry relative="1" as="geometry" />
     </mxCell>
-    <mxCell id="3" style="" vertex="1" parent="2">
-      <mxGeometry x="80" y="60" width="100" height="40" as="geometry" />
+    <ComplexNode label="RoutingOperation" href="" id="12">
+      <attributes Type="SRO" Name="" Repeat="10" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="9">
+        <mxGeometry x="20" y="190" width="320" height="100" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <SingleNode label="Operation" href="" id="13">
+      <attributes Type="Operation" Name="Kanten" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="12">
+        <mxGeometry x="30" y="50" width="100" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <SingleNode label="Operation" href="" id="14">
+      <attributes Type="Operation" Name="Gewindeschneiden" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="12">
+        <mxGeometry x="180" y="50" width="120" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <mxCell id="16" edge="1" parent="9" source="11" target="12">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <ComplexNode label="RoutingOperation" href="" id="21">
+      <attributes Type="ARO" Name="Zusammensetzen" Repeat="1" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="5">
+        <mxGeometry x="20" y="400" width="570" height="300" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <ComplexNode label="RoutingOperation" href="" id="23">
+      <attributes Type="SRO" Name="Schweißen" Repeat="1" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="21">
+        <mxGeometry x="20" y="50" width="290" height="230" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <ComplexNode label="RoutingOperation" href="" id="24">
+      <attributes Type="SRO" Name="Fixieren" Repeat="1" />
+
+      <mxCell style="shape=swimlane;startSize=20;minWidth=220" vertex="1" parent="23">
+        <mxGeometry x="20" y="50" width="260" height="110" as="geometry" />
+      </mxCell>
+    </ComplexNode>
+    <SingleNode label="Operation" href="" id="25">
+      <attributes Type="Operation" Name="Punktschweißen" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="24">
+        <mxGeometry x="20" y="60" width="100" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <SingleNode label="Operation" href="" id="26">
+      <attributes Type="Operation" Name="Punktschweißen" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="24">
+        <mxGeometry x="140" y="60" width="100" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <SingleNode label="Operation" href="" id="27">
+      <attributes Type="Operation" Name="Schweißnaht schließen" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="23">
+        <mxGeometry x="80" y="190" width="140" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <mxCell id="28" edge="1" parent="23" source="24" target="27">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <SingleNode label="Operation" href="" id="29">
+      <attributes Type="Operation" Name="Extern Schweißen" ExternalLink="none" />
+
+      <mxCell style="minWidth=100" vertex="1" parent="21">
+        <mxGeometry x="380" y="160" width="110" height="30" as="geometry" />
+      </mxCell>
+    </SingleNode>
+    <mxCell id="22" edge="1" parent="5" source="9" target="21">
+      <mxGeometry relative="1" as="geometry" />
     </mxCell>
   </root>
 </mxGraphModel>

@@ -4,7 +4,7 @@ body div.mxPopupMenu {
 	box-shadow: 3px 3px 6px #C0C0C0;
 	background: white;
 	position: absolute;
-	border: 3px solid #e7e7e7;
+	border: 1px solid #e7e7e7;
 	padding: 3px;
 }
 body table.mxPopupMenu {

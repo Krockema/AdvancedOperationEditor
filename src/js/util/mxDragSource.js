@@ -584,14 +584,16 @@ mxDragSource.prototype.dragEnter = function(graph, evt)
  * 
  * Deactivates the given graph as a drop target.
  */
-mxDragSource.prototype.dragExit = function(graph, evt)
-{
+mxDragSource.prototype.dragExit = function(graph, evt) {
+    
 	this.currentDropTarget = null;
 	this.currentPoint = null;
-	graph.isMouseDown = false;
-	
-	// Consumes all events in the current graph before they are fired
-	graph.removeListener(this.eventConsumer);
+    if (graph !== null) {
+		graph.isMouseDown = false;
+        // Consumes all events in the current graph before they are fired
+        graph.removeListener(this.eventConsumer);    
+    }
+    
 	
 	if (this.previewElement != null)
 	{
