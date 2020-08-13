@@ -23,16 +23,3 @@ function addToolbarItem(graph, toolbar, prototype, image, id, infoText)
     img.setAttribute("title", infoText);
     mxUtils.makeDraggable(img, graph, funct);
 }
-
-$(document).ready(function () {
-    $("#graphToolbarContainer img").tooltip({
-        placement: 'right',
-        template: '<div class="tooltip">' +
-            '<div class="tooltip-arrow"></div>' +
-                '<div class="tooltip-head">' +
-                    '<h3>Tool Info</h3>' +
-                '</div>' +
-            '<div class="tooltip-inner"></div>' +
-            '</div>'
-    });
-});

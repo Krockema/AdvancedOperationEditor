@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Advanced Operation Editor for Complex Structures</title>
+    <title> Hero for Complex Structures</title>
 
     <!-- Bootstrap extension for Layout Rendering -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -18,6 +18,19 @@
         mxLanguage = 'de';
         var mxLoadStylesheets = true;
         var mxLoadResources = true;
+    // tooltip generator
+    $(document).ready(function () {
+        $("#graphToolbarContainer img").tooltip({
+            placement: 'right',
+            template: '<div class="tooltip">' +
+                '<div class="tooltip-arrow"></div>' +
+                    '<div class="tooltip-head">' +
+                        '<h3>Tool Info</h3>' +
+                    '</div>' +
+                '<div class="tooltip-inner"></div>' +
+                '</div>'
+        });
+    });
     </script>
 
     <!-- Load and initialize the mxGraph library -->
@@ -62,7 +75,8 @@
 
                 // create an editor ?! - // Seems not required, did not figure out how this thing works yet.
                 var config = mxUtils.load('src/editor/config.xml').getDocumentElement();
-                var editor = new mxEditor(config);
+                var editor = new mxEditor(config, graph);
+                editor.validation = true;
 
                 // create an Toolbar
                 var tbContainer = document.getElementById('graphToolbarContainer');
@@ -95,6 +109,31 @@
 
                     return cell;
                 };
+
+                // Source node does not want any incoming connections
+                graph.multiplicities.push(new mxMultiplicity(
+                    false, 'SingleNode', null, null, 1, 1, ['SingleNode'],
+                    'Target Must Have 1 Source',
+                    'Target Must Connect From Source'));
+
+                // Target needs exactly one incoming connection from Source
+                graph.multiplicities.push(new mxMultiplicity(
+                    false, 'Source', null, null, 0, 0, null,
+                    'Source Must Have No Incoming Edge',
+                    null)); // Type does not matter
+
+                // invert others.
+                graph.multiplicities.push(new mxMultiplicity(
+                    true, 'SingleNode', null, null, 1, 1, ['SingleNode'],
+                    'Target Must Have 1 Source',
+                    'Target Must Connect From Source'));
+
+                graph.multiplicities.push(new mxMultiplicity(
+                    true, 'Source', null, null, 0, 0, null,
+                    'Source Must Have No Incoming Edge',
+                    null)); // Type does not matter
+
+
 
                 // Installs a popupmenu handler using local function and Disables built-in context menu
                 mxEvent.disableContextMenu(container);
@@ -147,32 +186,33 @@
 <!-- Pass the container of the chart to the function -->
 <body onload="main(document.getElementById('graphContainer'))">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Links -->,
+    <div class="navbar-collapse collapse justify-content-stretch">
+        <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    File
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#" onclick="readFile(graph, mxUtils, 'test.xml')">Load test.xml</a>
+                    <a class="dropdown-item" href="#">Save (Not working yet)</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick='graph.zoomIn();'>Zoom In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick='graph.zoomOut();'>Zoom Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick='showXML(graph);'>Show XML</a>
+            </li>
+        </ul>
+    </div>
     <!-- Brand -->
-    <a class="navbar-brand" href="#">Advanced Operation Editor </a>
-    
-    <!-- Links -->
-    <ul class="navbar-nav">
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                File
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="readFile(graph, mxUtils, 'test.xml')">Load test.xml</a>
-                <a class="dropdown-item" href="#">Save (Not working yet)</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick='graph.zoomIn();'>Zoom In</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick='graph.zoomOut();'>Zoom Out</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" onclick='showXML(graph);'>Show XML</a>
-        </li>
-    </ul>
-    </nav>
+    <a class="navbar-brand" href="#"><b>H</b>ierarchy <b>E</b>ditor for <b>R</b>esources and <b>O</b>perations </a>
+ </nav>
     <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2 col-md-1">
