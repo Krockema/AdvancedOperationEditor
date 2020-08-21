@@ -43,5 +43,5 @@ function createOperationToolbox(doc) {
         );
         console.log(rows[i].getElementsByTagName('APPONAME')[0].textContent);
     }
-    createWrapper(obContainer);
+    createWrapper(obContainer,'operation');
 }

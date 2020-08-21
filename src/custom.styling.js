@@ -20,9 +20,9 @@ function customizeElementStyle(graph)
 
     var operation = mxUtils.clone(style);
     operation[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
+    operation[mxConstants.STYLE_FILLCOLOR] = '#cdd7d6ff';
     operation[mxConstants.STYLE_ALIGN] = 'left';
     graph.getStylesheet().putCellStyle('process', operation);
-
 
     // Creates the default style for edges
     style = graph.getStylesheet().getDefaultEdgeStyle();

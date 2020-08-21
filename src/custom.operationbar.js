@@ -51,15 +51,16 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
         graph.setSelectionCells(graph.importCells([vertex], 0, 0, cell));
         // Update Size and Select Cell.
         var created = graph.getSelectionCells()[0];
-        graph.model.setStyle(created, 'process');
+        graph.model.setStyle(created, 'shape=process;fillColor=#cdd7d6ff;');
         graph.updateCellSize(created, false);
         
         // update Menu info
         var itemContainer = document.getElementById(vertex.value.id);
         itemContainer.className = "operationWrapper check";
-        var overlay = document.createElement('div');
-        overlay.className = 'toolbar-overlay';
-        itemContainer.appendChild(overlay);
+        // may move later to a Function to disable menue entries
+        // var overlay = document.createElement('div');
+        // overlay.className = 'toolbar-overlay';
+        // itemContainer.appendChild(overlay);
     }
 
     // Creates the image which is used as the drag icon (preview)
@@ -72,6 +73,7 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
     img.setAttribute("class", id);
     img.setAttribute("title", infoText);
     mxUtils.makeDraggable(img, graph, funct);
+    hoverById(graph, id);
     return img;
 }
 
@@ -96,4 +98,24 @@ function createWrapper(toolbar, type) {
         base.append(wrapper);
     }
     toolbar.append(base);
+}
+
+function hoverById(graph, id){
+    var elms=document.getElementsByClassName(id);
+    for(var i=0;i<elms.length;i++) {
+        elms[i].onmouseover = function() { changeShape(graph, id, "#c7f464"); }
+        elms[i].onmouseout = function() { changeShape(graph, id, "#cdd7d6ff"); } 
+    }
+}
+
+function changeShape(graph, id, shapeColor) {
+    var results = filterSameId(graph, id);
+    for (var result in results) {
+        graph.model.setStyle(results[result][1], "shape=process;fillColor=" + shapeColor);
+    }
+};
+
+function filterSameId(graph, id) {
+    return graph.model.filterCells(Object.entries(graph.model.cells),
+        function(cell) { return cell[1].value != null && cell[1].value.id === id; });
 }

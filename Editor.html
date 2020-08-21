@@ -22,16 +22,25 @@
     $(document).ready(function () {
         $("#graphToolbarContainer img").tooltip({
             placement: 'right',
-            template: '<div class="tooltip">' +
-                '<div class="tooltip-arrow"></div>' +
-                    '<div class="tooltip-head">' +
-                        '<h3>Tool Info</h3>' +
-                    '</div>' +
-                '<div class="tooltip-inner"></div>' +
-                '</div>'
+            template: toolTipTemplate()
         });
+
+        $("#graphOperationContainer img").tooltip({
+            placement: 'right',
+            template: toolTipTemplate()
+        });
+
+        function toolTipTemplate() {
+            return '<div class="tooltip">' +
+                '<div class="tooltip-arrow"></div>' +
+                '<div class="tooltip-head">' +
+                '<h3>Tool Info</h3>' +
+                '</div>' +
+                '<div class="tooltip-inner"></div>' +
+                '</div>';
+        }
     });
-    </script>
+    </script> 
 
     <!-- Load and initialize the mxGraph library -->
     <script type="text/javascript" src="src/js/mxClient.js"></script>
@@ -247,11 +256,11 @@
         <center style="margin-top: 15px">
             <div>Standard Elements</div>
         </center>
-        <div id="graphToolbarContainer" style="margin: auto; width: 70px;"></div>
+        <div id="graphToolbarContainer" class="hasToolTip" style="margin: auto; width: 70px;"></div>
         <center style="margin-top: 15px">
             <div>Operations</div>
         </center>
-        <div id="graphOperationContainer" style="margin: auto; width: 70px;"></div>
+        <div id="graphOperationContainer" class="hasToolTip" style="margin: auto; width: 70px;"></div>
     </div>
     <div class=" " style="display: block; right: 0px; width: 200px; float: right">
         <center style="margin-top: 15px">
