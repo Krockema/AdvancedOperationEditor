@@ -1,3 +1,36 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+    width: 100%;
+	overflow: hidden;
+}
+
+header {
+    height: 40px;
+    width: 100%;
+}
+
+#maincontent {
+	padding: 10px;
+	padding-bottom: 40px;
+}
+
+footer {
+	height: 30px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	border-top: solid 1px black;
+	padding: 7px;
+    font-size: 10px;
+    background: white;
+}
+
+* {
+    box-sizing: border-box;
+}
 body div.mxPopupMenu {
 	-webkit-box-shadow: 3px 3px 6px #C0C0C0;
 	-moz-box-shadow: 3px 3px 6px #C0C0C0;
@@ -62,8 +95,145 @@ center {
     margin: 0;
     font-size: 18px;
 }
+#graphContainer {
+    position: absolute;
+    overflow: hidden;
+    padding: 15px 15px 15px 15px;
+    bottom: 5px;
+    top: 65px;
+    left: 220px;
+    right: 220px;
+    bottom: 45px;
+    margin-bottom: 10px;
+}
+#graphContainer svg {
+    overflow: scroll;
+    position: relative;
+}
 #graphToolbarContainer img {
-    display: block;
+	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	transition: 0.3s;
+}
+
+#graphToolbarContainer img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s;
+}
+
+.complexWrapper {
+	position: relative;
+	margin-bottom: 0px;
+	width: 160px;
+	left: -20px;
+}
+
+    .complexWrapper::after {
+		    content: attr(name);
+		    display: block;
+		    background: transparent;
+		    font-size: xx-small;
+		    height: 40px;
+		    top: 12px;
+		    left: 55px;
+		    z-index: -10;
+		    width: 100%;
+		    position: absolute;
+	    }
+
+#graphToolbarContainer img:hover {
+    background-color: lightgray;
+    opacity: 0.2;
+    color: black;
+    cursor: grabbing;
+}
+
+.operationWrapper img {
+	display: block;
+	height: 40px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	transition: 0.3s;
+	background: transparent;
+	z-index: 10; 
+}
+
+.operationWrapper {
+	position: relative;
+	margin-bottom: 0px;
+    width: 160px;
+    left: -20px;
+}
+
+	.operationWrapper img:hover {
+		background-color: lightgray;
+		opacity: 0.2;
+		color: black;
+		cursor: grabbing;
+	}
+
+
+	.operationWrapper::after {
+		content: attr(name);
+		display: block;
+		background: transparent;
+        font-size: xx-small;
+		height: 40px;
+		top: 12px;
+		left: 10px;
+		z-index: -10;
+		width: 100%;
+		position: absolute;
+	}
+	.operationWrapper.uncheck::before {
+		content: url("../editor/shapes/uncheck_sm.png");
+		display: block;
+		background: transparent;
+		font-size: xx-small;
+		height: 40px;
+		top: 10px;
+		left: -20px;
+		z-index: -10;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+	}
+
+    .operationWrapper.check::before {
+        content: url("../editor/shapes/check_sm.png");
+        display: block;
+        background: transparent;
+        font-size: xx-small;
+        height: 40px;
+        top: 10px;
+        left: -20px;
+        z-index: -10;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+    }
+/* Hacky way do disable an toolbar Item */
+.toolbar-overlay {
+	position: absolute;
+	top: 0;
+	height: 40px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background: black;
+	opacity: 0.1;
+	z-index: 20;
+}
+#chekc-circle {
+    fill: grey;
+    stroke: grey;
+}
+
+#check {
+    fill: green;
+    stroke: green;
 }

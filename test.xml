@@ -28,14 +28,14 @@
     <SingleNode label="Operation" href="" id="17">
       <attributes Type="Operation" Name="Zerspanen" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="11">
+      <mxCell style="shape=process;" vertex="1" parent="11">
         <mxGeometry x="50" y="50" width="100" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
     <SingleNode label="Operation" href="" id="18">
       <attributes Type="Operation" Name="Entgraten" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="11">
+      <mxCell style="shape=process;" vertex="1" parent="11">
         <mxGeometry x="190" y="50" width="100" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
@@ -52,14 +52,14 @@
     <SingleNode label="Operation" href="" id="13">
       <attributes Type="Operation" Name="Kanten" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="12">
+      <mxCell style="shape=process;" vertex="1" parent="12">
         <mxGeometry x="30" y="50" width="100" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
     <SingleNode label="Operation" href="" id="14">
       <attributes Type="Operation" Name="Gewindeschneiden" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="12">
+      <mxCell style="shape=process;" vertex="1" parent="12">
         <mxGeometry x="180" y="50" width="120" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
@@ -90,21 +90,21 @@
     <SingleNode label="Operation" href="" id="25">
       <attributes Type="Operation" Name="Punktschweißen" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="24">
+      <mxCell style="shape=process;" vertex="1" parent="24">
         <mxGeometry x="20" y="60" width="100" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
     <SingleNode label="Operation" href="" id="26">
       <attributes Type="Operation" Name="Punktschweißen" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="24">
+      <mxCell style="shape=process;" vertex="1" parent="24">
         <mxGeometry x="140" y="60" width="100" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
     <SingleNode label="Operation" href="" id="27">
       <attributes Type="Operation" Name="Schweißnaht schließen" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="23">
+      <mxCell style="shape=process;" vertex="1" parent="23">
         <mxGeometry x="80" y="190" width="140" height="30" as="geometry" />
       </mxCell>
     </SingleNode>
@@ -114,7 +114,7 @@
     <SingleNode label="Operation" href="" id="29">
       <attributes Type="Operation" Name="Extern Schweißen" ExternalLink="none" />
 
-      <mxCell style="minWidth=100" vertex="1" parent="21">
+      <mxCell style="shape=process;" vertex="1" parent="21">
         <mxGeometry x="380" y="160" width="110" height="30" as="geometry" />
       </mxCell>
     </SingleNode>

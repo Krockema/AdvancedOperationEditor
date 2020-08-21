@@ -29,9 +29,9 @@ function selectionChanged(graph, mxUtils, mxEvent) {
         var attrs = cell.value.children[0].getAttributeNames();
 
         for (var i = 0; i < attrs.length; i++) {
-            if (attrs[i] === "Type") {
+            if (attrs[i] === "Type" && cell.value.nodeName.toLowerCase() === 'complexnode') {
                 createComboBox(graph, form, cell, attrs[i], mxEvent);
-            } else {
+            } else if (attrs[i] !== "Type"){
                 createTextField(graph, form, cell, attrs[i], mxEvent);
             }
         }
@@ -100,6 +100,7 @@ function createComboBox(graph, form, parent, attrName, mxEvent) {
     form.addOption(input, "ARO", "ARO", ("ARO" === cell.getAttributeNode(attrName).value));
     form.addOption(input, "PRO", "PRO", ("PRO" === cell.getAttributeNode(attrName).value));
     form.addOption(input, "SRO", "SRO", ("SRO" === cell.getAttributeNode(attrName).value));
+    form.addOption(input, "FRO", "FRO", ("FRO" === cell.getAttributeNode(attrName).value));
 
     var applyHandler = function () {
         var newValue = input.value || '';
@@ -170,13 +171,16 @@ function setSwimlaneStyle(graph, previous) {
                 var style = previous.apply(this, arguments);
                 switch (cell.value.children[0].getAttribute("Type").substr(0,3)) {
                     case "SRO":
-                        style += ';fillColor=#2d7d9a';
+                        style += ';fillColor=#102542ff;fontColor=#fff';
                         break;
                     case "PRO":
-                        style += ';fillColor=#744da9';
+                        style += ';fillColor=#3c7a89ff';
                         break;
                     case "ARO":
-                        style += ';fillColor=#68768a';
+                        style += ';fillColor=#f87060ff';
+                        break;
+                    case "FRO":
+                        style += ';fillColor=#b3a394ff';
                         break;
                     default:
                         break;
@@ -188,3 +192,10 @@ function setSwimlaneStyle(graph, previous) {
     };
 }
 
+/*
+--oxford-blue: #102542ff;
+--teal-blue: #3c7a89ff;
+--bittersweet: #f87060ff;
+--grullo: #b3a394ff;
+--light-gray: #cdd7d6ff;
+*/

@@ -1,0 +1,121 @@
+<view>
+  <fields>
+    <APPOID type="int">
+      <attribute name="displayName" dataType="string">Arbeitsplan_Id_Position</attribute>
+      <attribute name="MaxLength" dataType="int">4</attribute>
+      <attribute name="Precision" dataType="byte">10</attribute>
+      <attribute name="Scale" dataType="byte">0</attribute>
+      <attribute name="Nullable" dataType="bool">false</attribute>
+      <attribute name="IsIdentity" dataType="bool">false</attribute>
+    </APPOID>
+    <APPOTNR type="string" field="APPOTNR">
+      <attribute name="Nullable" dataType="bool">true</attribute>
+    </APPOTNR>
+    <APPOPOS type="int">
+      <attribute name="displayName" dataType="string">Positionsnummer</attribute>
+      <attribute name="MaxLength" dataType="int">4</attribute>
+      <attribute name="Precision" dataType="byte">10</attribute>
+      <attribute name="Scale" dataType="byte">0</attribute>
+      <attribute name="Nullable" dataType="bool">false</attribute>
+      <attribute name="IsIdentity" dataType="bool">false</attribute>
+    </APPOPOS>
+    <APPOKAT type="string">
+      <attribute name="displayName" dataType="string">Arbeitsgangkatalog_Nr</attribute>
+      <attribute name="MaxLength" dataType="int">8</attribute>
+      <attribute name="Precision" dataType="byte">0</attribute>
+      <attribute name="Scale" dataType="byte">0</attribute>
+      <attribute name="Nullable" dataType="bool">true</attribute>
+      <attribute name="IsIdentity" dataType="bool">false</attribute>
+    </APPOKAT>
+    <AGKTNAME type="string">
+      <attribute name="displayName" dataType="string">Arbeitsgangkatalog_Name</attribute>
+      <attribute name="MaxLength" dataType="int">32767</attribute>
+      <attribute name="Precision" dataType="byte">0</attribute>
+      <attribute name="Scale" dataType="byte">0</attribute>
+      <attribute name="Nullable" dataType="bool">true</attribute>
+      <attribute name="IsIdentity" dataType="bool">false</attribute>
+    </AGKTNAME>
+    <APPONAME type="string">
+      <attribute name="displayName" dataType="string">Bezeichnung</attribute>
+      <attribute name="MaxLength" dataType="int">32767</attribute>
+      <attribute name="Precision" dataType="byte">0</attribute>
+      <attribute name="Scale" dataType="byte">0</attribute>
+      <attribute name="Nullable" dataType="bool">true</attribute>
+      <attribute name="IsIdentity" dataType="bool">false</attribute>
+    </APPONAME>
+  </fields>
+  <rows>
+    <r>
+      <APPOID>2</APPOID>
+      <APPOTNR>0001000200</APPOTNR>
+      <APPOPOS>1</APPOPOS>
+      <APPONAME>Bohren Dmr.6,6 4x; M6 2x&#xD;Senken Dmr.12*2,5 2x; Entgraten</APPONAME>
+      <APPOBMG>00121</APPOBMG>
+      <BMSTNAME>Schlosserei</BMSTNAME>
+      <APPORUEST>0.0000</APPORUEST>
+      <APPOZBEZR>10</APPOZBEZR>
+      <AC1>Minuten</AC1>
+      <APPOBEARB>0.0000</APPOBEARB>
+      <APPOZBEZB>11</APPOZBEZB>
+      <AC2>min je 1 ME</AC2>
+      <APPOTRANS>8.0000</APPOTRANS>
+      <APPOZBEZT>20</APPOZBEZT>
+      <AC3>Stunden</AC3>
+      <APPOLAPP1>0.0000</APPOLAPP1>
+      <APPOPFKR>1.0000</APPOPFKR>
+      <APPOPFKB>1.0000</APPOPFKB>
+      <APPOKLGR>1</APPOKLGR>
+      <KLGRNAME>Lohngruppe 1</KLGRNAME>
+      <APPOWZKO>0.00000000</APPOWZKO>
+      <APPOWZKODI>1</APPOWZKODI>
+      <APPOKFAK>100.0000</APPOKFAK>
+      <APPORMELD>0</APPORMELD>
+      <APPOFLAGS>0</APPOFLAGS>
+      <APPOENSGEW>0.0000</APPOENSGEW>
+      <APPOENSDIM>1</APPOENSDIM>
+      <APPOFRKALK>0.00000000</APPOFRKALK>
+      <APPOVALID>0</APPOVALID>
+      <APPOTKATID>20</APPOTKATID>
+      <TKATNAME>Bohren u. Gewinde konventionell</TKATNAME>
+      <APPOSLOSAUTO>false</APPOSLOSAUTO>
+      <APPOFLPKT>false</APPOFLPKT>
+      <APPOSECTION>false</APPOSECTION>
+    </r>
+    <r>
+      <APPOID>3</APPOID>
+      <APPOTNR>0001000200</APPOTNR>
+      <APPOPOS>1</APPOPOS>
+      <APPONAME>Sägen Fl30*12*48lg St37-2K&#xD;Entgraten&#xD;</APPONAME>
+      <APPOBMG>00010</APPOBMG>
+      <BMSTNAME>Zuschnitt</BMSTNAME>
+      <APPORUEST>15.0000</APPORUEST>
+      <APPOZBEZR>10</APPOZBEZR>
+      <AC1>Minuten</AC1>
+      <APPOBEARB>1.0000</APPOBEARB>
+      <APPOZBEZB>11</APPOZBEZB>
+      <AC2>min je 1 ME</AC2>
+      <APPOTRANS>8.0000</APPOTRANS>
+      <APPOZBEZT>20</APPOZBEZT>
+      <AC3>Stunden</AC3>
+      <APPOLAPP1>0.0000</APPOLAPP1>
+      <APPOPFKR>1.0000</APPOPFKR>
+      <APPOPFKB>1.0000</APPOPFKB>
+      <APPOKLGR>1</APPOKLGR>
+      <KLGRNAME>Lohngruppe 1</KLGRNAME>
+      <APPOWZKO>0.00000000</APPOWZKO>
+      <APPOWZKODI>1</APPOWZKODI>
+      <APPOKFAK>100.0000</APPOKFAK>
+      <APPORMELD>0</APPORMELD>
+      <APPOFLAGS>0</APPOFLAGS>
+      <APPOENSGEW>0.0000</APPOENSGEW>
+      <APPOENSDIM>1</APPOENSDIM>
+      <APPOFRKALK>0.00000000</APPOFRKALK>
+      <APPOVALID>0</APPOVALID>
+      <APPOTKATID>1</APPOTKATID>
+      <TKATNAME>Sägen</TKATNAME>
+      <APPOSLOSAUTO>false</APPOSLOSAUTO>
+      <APPOFLPKT>false</APPOFLPKT>
+      <APPOSECTION>false</APPOSECTION>
+    </r>
+  </rows>
+</view>
