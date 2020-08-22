@@ -88,11 +88,10 @@ function copy(graph, cells) {
     return result;
 }
 
-function paste(graph, newParent) {
+function paste(graph, newParent, select = true, delta = 40) {
     if (!mxClipboard.isEmpty())
     {
         var cells = graph.getImportableCells(mxClipboard.getCells());
-        var delta = 40;
         var parent = (newParent === null) ? graph.getDefaultParent() : newParent;
 
         graph.model.beginUpdate();
@@ -112,6 +111,8 @@ function paste(graph, newParent) {
             graph.model.endUpdate();
         }
         // selects the inserted cells
-        graph.setSelectionCells(cells);
+        if(select) {
+            graph.setSelectionCells(cells);
+        }
     }
 };

@@ -111,7 +111,7 @@ function hoverById(graph, id){
 function changeShape(graph, id, shapeColor) {
     var results = filterSameId(graph, id);
     for (var result in results) {
-        graph.model.setStyle(results[result][1], "shape=process;fillColor=" + shapeColor);
+        graph.model.setStyle(results[result][1], "process;shape=process;fillColor=" + shapeColor);
     }
 };
 
