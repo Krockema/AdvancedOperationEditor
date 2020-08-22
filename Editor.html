@@ -84,7 +84,7 @@
                 graph.swimlaneNesting = true;
                 graph.border = 80;
                 graph.getView().translate = new mxPoint(graph.border / 2, graph.border / 2);
-                
+                graph.htmlLabels = true;
                 // create an editor ?! - // Seems not required, did not figure out how this thing works yet.
                 var config = mxUtils.load('src/editor/config.xml').getDocumentElement();
                 editor.configure(config);

@@ -51,7 +51,7 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
         graph.setSelectionCells(graph.importCells([vertex], 0, 0, cell));
         // Update Size and Select Cell.
         var created = graph.getSelectionCells()[0];
-        graph.model.setStyle(created, 'shape=process;fillColor=#cdd7d6ff;');
+        graph.model.setStyle(created, 'process;shape=process;fillColor=#cdd7d6ff;');
         graph.updateCellSize(created, false);
         
         // update Menu info
@@ -64,7 +64,7 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
     }
 
     // Creates the image which is used as the drag icon (preview)
-    var img = toolbar.addMode("test", image, funct);
+    var img = toolbar.addMode(id , image, funct);
     img.setAttribute("id", id);
     img.setAttribute("name", infoText.substr(0, 30));
     img.setAttribute("data-toggle", "tooltip");

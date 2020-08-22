@@ -156,9 +156,9 @@ function setLabel(mxUtils, cell) {
             var type = cell.value.children[0].getAttribute("Type", "");
             var name = cell.value.children[0].getAttribute("Name", "");
             var repeated = cell.value.children[0].getAttribute("Repeat", "");
-            return type.concat(": ", name, " (", 0 , "/",repeated, ")");
+            return type.concat(": ", name) ;
         } else if (cell.value.nodeName.toLowerCase() == 'singlenode') {
-            return cell.value.children[0].getAttribute("Name");
+            return  "<div class='Test'>" + cell.value.children[0].getAttribute("Name") + "</div>";
         }
     }
     return '';
