@@ -82,8 +82,8 @@
                 img.style.cursor = 'pointer';
                 img.style.width = '16px';
                 img.style.height = '16px';
-                img.style.left = (state.x + state.width) + 'px';
-                img.style.top = (state.y + state.height) + 'px';
+                img.style.left = (state.x + state.width - 15) + 'px';
+                img.style.top = (state.y + state.height -15) + 'px';
 			    
                 mxEvent.addGestureListeners(img,
                     mxUtils.bind(this, function(evt) {
@@ -110,8 +110,8 @@
                 img.style.cursor = 'pointer';
                 img.style.width = '16px';
                 img.style.height = '16px';
-                img.style.left = (state.x + state.width) + 'px';
-                img.style.top = (state.y + 15) + 'px';
+                img.style.left = (state.x + state.width - 15) + 'px';
+                img.style.top = (state.y) + 'px';
 			    
                 // mxEvent.addGestureListeners(img,
                 //     mxUtils.bind(this, function(evt)
@@ -179,7 +179,8 @@
                 editor.configure(config);
                 editor.setGraphContainer(container);
                 editor.validation = true;
-
+                editor.installUndoHandler(graph);
+                
                 // Configures the automatic layout for the table columns
                 editor.layoutSwimlanes = true;
                 editor.createSwimlaneLayout = function ()
@@ -313,25 +314,31 @@
                 <ul class="navbar-nav">
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle iconText" href="#" id="navbardrop" data-toggle="dropdown"><img src="./src/editor/shapes/fileOpen.svg" />
                             File
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" onclick="readFile(graph, mxUtils, 'test.xml')">Load Arrow test</a>
-                            <a class="dropdown-item" href="#" onclick="readFile(graph, mxUtils, 'test2.xml')">Load H Lane test</a>
-                            <a class="dropdown-item" href="#" onclick="readFile(graph, mxUtils, 'test3.xml')">Load V Lane test</a>
-                            <a class="dropdown-item" href="#" onclick="readFromFile('request.xml')">Load xml test</a>
-                            <a class="dropdown-item" href="#">Save (Not working yet)</a>
+                            <a class="dropdown-item xmlDocument" href="#" onclick="readFile(graph, mxUtils, 'test.xml')"><img src="./src/editor/shapes/document.svg" /> Load Arrow test</a>
+                            <a class="dropdown-item xmlDocument" href="#" onclick="readFile(graph, mxUtils, 'test2.xml')"><img src="./src/editor/shapes/document.svg" /> Load H Lane test</a>
+                            <a class="dropdown-item xmlDocument" href="#" onclick="readFile(graph, mxUtils, 'test3.xml')"><img src="./src/editor/shapes/document.svg" /> Load V Lane test</a>
+                            <a class="dropdown-item xmlDocument" href="#" onclick="readFromFile('request.xml')"><img src="./src/editor/shapes/document.svg" /> Load xml test</a>
+                            <a class="dropdown-item saveDocument" href="#"><img src="./src/editor/shapes/upload.svg" /> Save (Not working yet)</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick='graph.zoomIn();'>Zoom In</a>
+                        <a class="nav-link icon" href="#" onclick='editor.undoManager.undo()'><img src="./src/editor/shapes/back.svg" /></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick='graph.zoomOut();'>Zoom Out</a>
+                        <a class="nav-link icon" href="#" onclick='editor.undoManager.redo()'><img src="./src/editor/shapes/forward.svg" /></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick='showXML(graph);'>Show XML</a>
+                        <a class="nav-link icon" href="#" onclick='graph.zoomIn();'><img src="./src/editor/shapes/zoomIn.svg" /></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon" href="#" onclick='graph.zoomOut();'><img src="./src/editor/shapes/zoomOut.svg" /></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link iconText" href="#" onclick='showXML(graph);'><img src="./src/editor/shapes/document_light.svg" /> XML</a>
                     </li>
                 </ul>
             </div>

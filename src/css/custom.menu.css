@@ -8,8 +8,11 @@ body {
 }
 
 header {
-    height: 40px;
+    height: 20px;
     width: 100%;
+}
+.navbar {
+    height: 30px;
 }
 
 #maincontent {
@@ -74,7 +77,28 @@ center {
     border-bottom: 1px solid darkgrey;
 }
 
+.nav-item {
 
+    border-right: solid 1px;
+    height: 30px;
+}
+.nav-link {
+    padding: 2px;
+}
+
+.icon img {
+    padding-top: 4px;
+    padding-left: -20px;
+				 
+}
+.icon img {
+    padding-top: 4px;
+}
+
+.iconText img {
+    padding-top: 4px;
+    vertical-align: top;
+}
 
 /* Styles for custom tooltip template */
 .tooltip-head {
@@ -98,12 +122,11 @@ center {
 #graphContainer {
     position: absolute;
     overflow: hidden;
-    padding: 15px 15px 15px 15px;
     bottom: 5px;
-    top: 65px;
+    top: 45px;
     left: 220px;
     right: 220px;
-    bottom: 45px;
+    bottom: 35px;
     margin-bottom: 10px;
 }
 #graphContainer svg {

@@ -112,6 +112,8 @@ function changeShape(graph, id, shapeColor) {
     var results = filterSameId(graph, id);
     for (var result in results) {
         graph.model.setStyle(results[result][1], "process;shape=process;fillColor=" + shapeColor);
+        editor.undoManager.history.pop();editor.undoManager.history.pop();
+        editor.undoManager.indexOfNextAdd = editor.undoManager.history.length;
     }
 };
 
