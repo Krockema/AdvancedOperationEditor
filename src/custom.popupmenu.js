@@ -57,7 +57,6 @@ function unlockUponDelete(id) {
     var itemContainer = document.getElementById(id);
     if (itemContainer != null && filterSameId(graph, id).length === 0) {
         itemContainer.className = "operationWrapper uncheck";
-        // itemContainer.removeChild(itemContainer.children[1]);
     }
 }
 

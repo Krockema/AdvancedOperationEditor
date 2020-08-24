@@ -36,6 +36,10 @@ function selectionChanged(graph, mxUtils, mxEvent) {
             }
         }
 
+        if (cell.value.nodeName.toLowerCase() === 'singlenode') {
+            createInfoFields(form, cell.value.id);
+        }
+
         div.appendChild(form.getTable());
         mxUtils.br(div);
     }
@@ -191,6 +195,7 @@ function setSwimlaneStyle(graph, previous) {
         return null;
     };
 }
+
 
 
 

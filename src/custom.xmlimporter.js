@@ -20,7 +20,7 @@ function readFromFile(filename) {
                 parser = new DOMParser();
                 xmlDoc = parser.parseFromString(this.response,"text/xml");
                 console.log(xmlDoc);
-                createOperationToolbox(xmlDoc);
+                createOperationToolbox();
                 // var docStr = new XMLSerializer().serializeToString(xmlDoc); // for serializing later on 
                 // console.log(docStr);
            // }
@@ -29,7 +29,7 @@ function readFromFile(filename) {
     xhrDoc.send();
 }
 
-function createOperationToolbox(doc) {
+function createOperationToolbox() {
     var rows = xmlDoc.children[0].children[1].children;
 
     var obContainer = createToolbar(editor);
@@ -44,4 +44,21 @@ function createOperationToolbox(doc) {
         console.log(rows[i].getElementsByTagName('APPONAME')[0].textContent);
     }
     createWrapper(obContainer,'operation');
+}
+
+function createInfoFields(form, id) {
+    if (xmlDoc === null) return;
+    var rows = xmlDoc.children[0].children[1].children;
+
+    var elements = Array.from(rows).filter(x => x.getElementsByTagName('APPOID')[0].textContent === id);
+    if (elements.length !== 1) {
+        alert("Found Id Twice in the returned XML Doc");
+        return;
+    }
+
+    for (var i = 0; i < elements[0].childElementCount; i++) {
+        var input = form.addText(elements[0].children[i].nodeName + ':', elements[0].children[i].innerHTML);
+        input.setAttribute('disabled', 'true');
+    }
+
 }

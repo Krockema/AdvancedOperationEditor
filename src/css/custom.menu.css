@@ -92,12 +92,21 @@ center {
 				 
 }
 .icon img {
-    padding-top: 4px;
+	padding-top: 4px;
+	opacity: 0.5;
+}
+
+.icon img:hover {
+  opacity: 1;
 }
 
 .iconText img {
-    padding-top: 4px;
-    vertical-align: top;
+	padding-top: 4px;
+	vertical-align: top;
+    opacity: 0.5;
+}
+.iconText:hover img {
+    opacity: 1;
 }
 
 /* Styles for custom tooltip template */
@@ -259,4 +268,33 @@ center {
 #check {
     fill: green;
     stroke: green;
+}
+.splitter {
+    display: flex;
+}
+
+#seperator {
+	cursor: col-resize;
+	background: url(../images/vsizegrip.png) center center no-repeat #EFF0F1;
+	width: 10px;
+	height: 100px;
+	min-width: 10px;
+}
+
+#first {
+    height: 100%;
+    min-width: 10px;
+}
+
+#second {
+	width: 320px;
+	height: 100%;
+	min-width: 10px;
+}
+
+.map {
+    height: 180px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    overflow: hidden;
 }

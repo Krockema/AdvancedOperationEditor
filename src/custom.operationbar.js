@@ -37,16 +37,19 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
     // Function that is executed when the image is dropped on
     // the graph. The cell argument points to the cell under
     // the mousepointer if there is one.
-    var funct = function(graph, evt, cell)
-    {
+    var funct = function(graph, evt, cell) {
+        
         graph.stopEditing(false);
         toolbar.disable = true;
+
+
         // set Geometry
         var pt = graph.getPointForEvent(evt);
         var vertex = graph.getModel().cloneCell(prototype);
         vertex.geometry.x = pt.x;
         vertex.geometry.y = pt.y;
-        
+
+        graph.model.beginUpdate();
         // Import Vertex
         graph.setSelectionCells(graph.importCells([vertex], 0, 0, cell));
         // Update Size and Select Cell.
@@ -57,6 +60,7 @@ function addOperationItem(graph, toolbar, prototype, image, id, infoText) {
         // update Menu info
         var itemContainer = document.getElementById(vertex.value.id);
         itemContainer.className = "operationWrapper check";
+        graph.model.endUpdate();
         // may move later to a Function to disable menue entries
         // var overlay = document.createElement('div');
         // overlay.className = 'toolbar-overlay';
@@ -112,12 +116,25 @@ function changeShape(graph, id, shapeColor) {
     var results = filterSameId(graph, id);
     for (var result in results) {
         graph.model.setStyle(results[result][1], "process;shape=process;fillColor=" + shapeColor);
-        editor.undoManager.history.pop();editor.undoManager.history.pop();
-        editor.undoManager.indexOfNextAdd = editor.undoManager.history.length;
+        //editor.undoManager.history.pop();
+        editor.undoManager.history.pop();
+        editor.undoManager.indexOfNextAdd = editor.undoManager.indexOfNextAdd--;
     }
 };
 
 function filterSameId(graph, id) {
     return graph.model.filterCells(Object.entries(graph.model.cells),
         function(cell) { return cell[1].value != null && cell[1].value.id === id; });
+}
+
+function checkIfOperationExist() {
+    var container = document.getElementsByClassName('operationWrapper');
+    for (var i = 0; i < container.length; i++) {
+        var exists = filterSameId(graph, container[0].id);
+        if (exists.length === 0) {
+            container[0].setAttribute("class", "operationWrapper uncheck");
+        } else {
+            container[0].setAttribute("class", "operationWrapper check");
+        }
+    }
 }

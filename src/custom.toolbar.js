@@ -25,15 +25,17 @@ function addToolbarItem(graph, toolbar, prototype, image, id, infoText) {
     var funct = function(graph, evt, cell)
     {
         graph.stopEditing(false);
-
+    
         var pt = graph.getPointForEvent(evt);
         var vertex = graph.getModel().cloneCell(prototype);
         vertex.geometry.x = pt.x;
         vertex.geometry.y = pt.y;
 
+        graph.model.beginUpdate();
         graph.setSelectionCells(graph.importCells([vertex], 0, 0, cell));
         var created = graph.getSelectionCells()[0];
         //graph.model.setStyle(created, 'process');
+        graph.model.endUpdate();
     }
 
     // Creates the image which is used as the drag icon (preview)
