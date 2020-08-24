@@ -58,7 +58,7 @@ function setInitialWidth() {
     var second = document.getElementById("second");
     var sep = document.getElementById("seperator");
     var graphContainer = document.getElementById("graphContainer");
-    
+    var propertiesContainer = document.getElementById("properties");
     let secondWidth = (width - 200) * 0.2;
     secondWidth = (secondWidth > 320) ? secondWidth : 320;
     let firstWidth = (width - secondWidth -200);
@@ -69,4 +69,5 @@ function setInitialWidth() {
     second.style.width = secondWidth + "px";
     second.style.height = height + "px";
     sep.style.height = height + "px";
+    propertiesContainer.style.height = height - 200 + "px";
 }
