@@ -96,6 +96,7 @@
                 graph.border = 80;
                 graph.getView().translate = new mxPoint(graph.border / 2, graph.border / 2);
                 graph.htmlLabels = true;
+                graph.cellsEditable = false;
                 addHoverIcons(graph, 20);
                 
                 // create an editor ?! - // Seems not required, did not figure out how this thing works yet.
@@ -157,7 +158,13 @@
                 var keyHandler = new mxKeyHandler(graph);
                 keyHandler.bindKey(46, function() {
                     deleteRecursive(graph.getSelectionCells());
-                } );
+                });
+                // Escape key needs Speacial handling
+                graph.addListener(mxEvent.ESCAPE, 
+                    function() {
+                    graph.stopEditing(true);
+                    graph.selectionModel.clear();
+                });
                 // Allow frame selection
                 new mxRubberband(graph);
 
