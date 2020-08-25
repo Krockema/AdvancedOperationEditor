@@ -1,3 +1,84 @@
+// Defines a new class for all icons
+function mxIconSet(state, up, down, upAndDown) {
+    this.images = [];
+    var graph = state.view.graph;
+
+    // Move Down
+    if (down || upAndDown) {
+        var img = mxUtils.createImage('src/images/down.gif');
+        img.setAttribute('title', 'Down');
+        img.style.position = 'absolute';
+        img.style.cursor = 'pointer';
+        img.style.width = '16px';
+        img.style.height = '16px';
+        img.style.left = (state.x + state.width - 15) + 'px';
+        img.style.top = (state.y + state.height - 15) + 'px';
+
+        mxEvent.addGestureListeners(img,
+            mxUtils.bind(this, function (evt) {
+                var parent = graph.model.getParent(state.cell);
+                var index = parent.children.indexOf(state.cell);
+                swapArrayElements(parent.children, index, index + 1);
+                var result = copy(graph, parent.children);
+                graph.removeCells(result);
+                paste(graph, parent, false, 0);
+                mxEvent.consume(evt);
+                this.destroy();
+            })
+        );
+
+        state.view.graph.container.appendChild(img);
+        this.images.push(img);
+    }
+
+    if (up || upAndDown) {
+        // Move Up
+        var img = mxUtils.createImage('src/images/up.gif');
+        img.setAttribute('title', 'Up');
+        img.style.position = 'absolute';
+        img.style.cursor = 'pointer';
+        img.style.width = '16px';
+        img.style.height = '16px';
+        img.style.left = (state.x + state.width - 15) + 'px';
+        img.style.top = (state.y) + 'px';
+
+        // mxEvent.addGestureListeners(img,
+        //     mxUtils.bind(this, function(evt)
+        //     {
+        //         // Disables dragging the image
+        //         mxEvent.consume(evt);
+        //     })
+        // );
+
+        mxEvent.addListener(img, 'click',
+            mxUtils.bind(this, function (evt) {
+                var parent = graph.model.getParent(state.cell);
+                var index = parent.children.indexOf(state.cell);
+                swapArrayElements(parent.children, index, index - 1);
+                var result = copy(graph, parent.children);
+                graph.removeCells(result);
+                paste(graph, parent, false, 0);
+                mxEvent.consume(evt);
+                this.destroy();
+            })
+        );
+
+        state.view.graph.container.appendChild(img);
+        this.images.push(img);
+    }
+};
+
+mxIconSet.prototype.destroy = function () {
+    if (this.images != null) {
+        for (var i = 0; i < this.images.length; i++) {
+            var img = this.images[i];
+            img.parentNode.removeChild(img);
+        }
+    }
+
+    this.images = null;
+};
+
 // Shows icons if the mouse is over a cell
 function addHoverIcons(graph, iconTolerance = 20) {
     graph.addMouseListener(

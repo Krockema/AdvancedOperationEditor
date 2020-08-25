@@ -40,6 +40,9 @@
                 '<div class="tooltip-inner"></div>' +
                 '</div>';
         }
+
+        // Reset Windows Layout on Reset.
+        window.addEventListener('resize', setInitialWidth);
     });
     </script> 
 
@@ -71,92 +74,6 @@
         var editor;
         var xmlDoc = null;
         var operationBar;
-
-        // Defines a new class for all icons
-        function mxIconSet(state, up, down, upAndDown)
-        {
-            this.images = [];
-            var graph = state.view.graph;
-			
-            // Move Down
-            if (down || upAndDown) {
-                var img = mxUtils.createImage('src/images/down.gif');
-                img.setAttribute('title', 'Down');
-                img.style.position = 'absolute';
-                img.style.cursor = 'pointer';
-                img.style.width = '16px';
-                img.style.height = '16px';
-                img.style.left = (state.x + state.width - 15) + 'px';
-                img.style.top = (state.y + state.height -15) + 'px';
-			    
-                mxEvent.addGestureListeners(img,
-                    mxUtils.bind(this, function(evt) {
-                        var parent = graph.model.getParent(state.cell);
-                        var index = parent.children.indexOf(state.cell);
-                        swapArrayElements(parent.children, index, index + 1);
-                        var result = copy(graph, parent.children);
-                        graph.removeCells(result);
-                        paste(graph, parent, false, 0);
-                        mxEvent.consume(evt);
-                        this.destroy();
-                    })
-                );
-			    
-                state.view.graph.container.appendChild(img);
-                this.images.push(img);
-            }
-            
-            if (up || upAndDown){
-                // Move Up
-                var img = mxUtils.createImage('src/images/up.gif');
-                img.setAttribute('title', 'Up');
-                img.style.position = 'absolute';
-                img.style.cursor = 'pointer';
-                img.style.width = '16px';
-                img.style.height = '16px';
-                img.style.left = (state.x + state.width - 15) + 'px';
-                img.style.top = (state.y) + 'px';
-			    
-                // mxEvent.addGestureListeners(img,
-                //     mxUtils.bind(this, function(evt)
-                //     {
-                //         // Disables dragging the image
-                //         mxEvent.consume(evt);
-                //     })
-                // );
-			    
-                mxEvent.addListener(img, 'click',
-                    mxUtils.bind(this, function(evt)
-                    {
-                        var parent = graph.model.getParent(state.cell);
-                        var index = parent.children.indexOf(state.cell);
-                        swapArrayElements(parent.children, index, index - 1);
-                        var result = copy(graph, parent.children);
-                        graph.removeCells(result);
-                        paste(graph, parent, false, 0);
-                        mxEvent.consume(evt);
-                        this.destroy();
-                    })
-                );
-			    
-                state.view.graph.container.appendChild(img);
-                this.images.push(img);
-            }
-        };
-
-        mxIconSet.prototype.destroy = function()
-        {
-            if (this.images != null)
-            {
-                for (var i = 0; i < this.images.length; i++)
-                {
-                    var img = this.images[i];
-                    img.parentNode.removeChild(img);
-                }
-            }
-			
-            this.images = null;
-        };
 
         // The program starts here
         // Create a sample diagram in the DOM node with the specified ID
@@ -207,11 +124,6 @@
                     {
                         return true;
                     };
-                    // layout.isVertexIgnored = function(cell)
-                    // {
-                    //     return !graph.isPool(cell);
-                    // }
-					
                     return layout;
                 };
                 setFolding(graph);
@@ -226,9 +138,7 @@
                     var pool = cell.value != null && cell.value.localName === 'ComplexNode';
                     return pool;
                 };
-                mxConstants.HANDLE_FILLCOLOR = '#99ccff';
-                mxConstants.HANDLE_STROKECOLOR = '#0088cf';
-                mxConstants.VERTEX_SELECTION_COLOR = '#00a8ff';
+
                 // more Styling
                 customizeElementStyle(graph, mxUtils);
 
@@ -244,13 +154,15 @@
 
 
                 // Binds keycodes to actionnames in an editor.
-                var keyHandler = new mxDefaultKeyHandler(graph);
+                var keyHandler = new mxKeyHandler(graph);
+                keyHandler.bindKey(46, function() {
+                    deleteRecursive(graph.getSelectionCells());
+                } );
                 // Allow frame selection
                 new mxRubberband(graph);
 
                 // create Validation Rules.
                 createValidationRules(graph);
-
 
                 // Matches DnD inside the graph
                 mxDragSource.prototype.getDropTarget = function (graph, x, y) {
@@ -373,8 +285,7 @@
         </div>
         <div id="seperator"></div>
         <div class="" id="second">
-            <!--
-            style="display: block; right: 0px; width: 200px; float: right">-->
+            <!-- style="display: block; right: 0px; width: 200px; float: right">-->
             <center style="margin-top: 15px; margin-left: 5px;">
                 <div>Mini Map</div>
             </center>
@@ -398,10 +309,6 @@
         <img src="./src/editor/shapes/logo-text.svg" width="100px" height="26px" />
     </div>
 </footer>
- 
-    
-
-
-    <!-- Create a container for the graphic using the grid background image -->
+ <!-- Create a container for the graphic using the grid background image -->
 </body>
 </html>

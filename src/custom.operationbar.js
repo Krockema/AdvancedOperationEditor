@@ -130,11 +130,11 @@ function filterSameId(graph, id) {
 function checkIfOperationExist() {
     var container = document.getElementsByClassName('operationWrapper');
     for (var i = 0; i < container.length; i++) {
-        var exists = filterSameId(graph, container[0].id);
+        var exists = filterSameId(graph, container[i].id);
         if (exists.length === 0) {
-            container[0].setAttribute("class", "operationWrapper uncheck");
+            container[i].setAttribute("class", "operationWrapper uncheck");
         } else {
-            container[0].setAttribute("class", "operationWrapper check");
+            container[i].setAttribute("class", "operationWrapper check");
         }
     }
 }

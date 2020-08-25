@@ -44,20 +44,10 @@ function allCellParentEquals(graph, selection) {
 }
 
 function deleteRecursive(removals) {
-    if(removals != null) {
-        for (var i = 0; i < removals.length; i++) {
-            graph.removeCells([removals[i]], true);
-            deleteRecursive(removals[i].children);
-            unlockUponDelete(removals[i].value.id);
-        };
-    }
-}
-
-function unlockUponDelete(id) {
-    var itemContainer = document.getElementById(id);
-    if (itemContainer != null && filterSameId(graph, id).length === 0) {
-        itemContainer.className = "operationWrapper uncheck";
-    }
+    if (removals != null) {
+        graph.removeCells(removals, false);
+        checkIfOperationExist();
+    };
 }
 
 function group(graph, evt, prototype, cells) {

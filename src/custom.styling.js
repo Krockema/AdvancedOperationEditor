@@ -1,6 +1,8 @@
 function customizeElementStyle(graph)
 {
-
+    mxConstants.HANDLE_FILLCOLOR = '#99ccff';
+    mxConstants.HANDLE_STROKECOLOR = '#0088cf';
+    mxConstants.VERTEX_SELECTION_COLOR = '#00a8ff';
     // Creates the default style for vertices
     var style = graph.getStylesheet().getDefaultVertexStyle();
     style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_SWIMLANE;
