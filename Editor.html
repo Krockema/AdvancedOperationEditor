@@ -50,6 +50,7 @@
     <script type="text/javascript" src="src/js/mxClient.js"></script>
     <!-- Load Customizing -->
     <script type="text/javascript" src="src/custom.toolbar.js"></script>
+    <script type="text/javascript" src="src/custom.stackedLayout.js"></script>
     <script type="text/javascript" src="src/custom.operationbar.js"></script>
     <script type="text/javascript" src="src/custom.tooltip.js"></script>
     <script type="text/javascript" src="src/custom.popupmenu.js"></script>
@@ -120,6 +121,7 @@
                     layout.marginLeft = 10;
                     layout.marginRight = 10;
                     layout.warp = 110;
+                    customLayout(layout);
                     // Overrides the function to always return true
                     layout.isVertexMovable = function(cell)
                     {
@@ -212,6 +214,7 @@
                     var style = this.getCellStyle(cell);
 
                     if (style['minWidth'] > 0) {
+                        console.log(style);
                         result.width = Math.max(style['minWidth'], result.width);
                     }
 

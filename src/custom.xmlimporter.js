@@ -3,6 +3,7 @@ function readFile(graph, mxUtils, filename) {
     var root = req.getDocumentElement();
     var decoder = new mxCodec(root.ownerDocument);
     decoder.decode(root, graph.getModel());
+    graph.model.geometryForCellChanged(graph.model.getDefaultParent(), graph.model.getDefaultParent().getGeometry());
     graph.refresh();
 };
 

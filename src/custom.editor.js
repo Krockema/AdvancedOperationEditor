@@ -176,6 +176,7 @@ function setSwimlaneStyle(graph, previous) {
                 switch (cell.value.children[0].getAttribute("Type").substr(0,3)) {
                     case "SRO":
                         style += ';fillColor=#102542ff;fontColor=#fff';
+                        cell.orientation = 'column';
                         break;
                     case "PRO":
                         style += ';fillColor=#3c7a89ff';
@@ -185,6 +186,7 @@ function setSwimlaneStyle(graph, previous) {
                         break;
                     case "FRO":
                         style += ';fillColor=#b3a394ff';
+                        cell.orientation = 'column';
                         break;
                     default:
                         break;

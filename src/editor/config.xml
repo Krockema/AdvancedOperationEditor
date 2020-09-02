@@ -3,7 +3,7 @@
   <Array as="templates">
     <add as="grouped">
       <ComplexNode label="RoutingOperation" href="">
-        <mxCell vertex="1" style="shape=swimlane;startSize=30;minWidth=220;horizontal=0">
+        <mxCell vertex="1" style="shape=swimlane;startSize=30;minWidth=220;horizontal=0" orientation="row">
           <mxGeometry as="geometry" width="220" height="100"/>
         </mxCell>
         <attributes Type="SRO" Name="" Repeat="1" /> 
@@ -11,8 +11,8 @@
     </add>
     <add as="operation">
       <SingleNode label="Operation" href="">
-        <mxCell vertex="1" style="process;shape=process;">
-          <mxGeometry as="geometry" width="120" height="30"/>
+        <mxCell vertex="1" style="process;shape=process" orientation="column">
+          <mxGeometry as="geometry" width="200" height="25"/>
         </mxCell>
         <attributes Type="Operation" Name="undefined operation" ExternalLink="none"/>
       </SingleNode>

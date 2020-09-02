@@ -6,7 +6,7 @@
       
       <attributes Type="SRO" Name="" Repeat="1" />
       <mxCell style="shape=swimlane;startSize=20;minWidth=220" parent="1" vertex="1">
-        <mxGeometry x="-1330" y="90" width="1380" height="190" as="geometry" />
+        <mxGeometry x="10" y="10" width="1380" height="190" as="geometry" />
       </mxCell>
     </ComplexNode>
     <ComplexNode label="RoutingOperation" href="" id="9">

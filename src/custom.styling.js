@@ -13,7 +13,7 @@ function customizeElementStyle(graph)
     // style[mxConstants.STYLE_GRADIENTCOLOR] = 'white';
     style[mxConstants.STYLE_FONTCOLOR] = 'black';
     style[mxConstants.STYLE_FONTSIZE] = '12';
-    style[mxConstants.STYLE_SPACING] = 4;
+    style[mxConstants.STYLE_SPACING] = 1;
     style[mxConstants.STYLE_RESIZE_HEIGHT] = 0;
     style[mxConstants.STYLE_SWIMLANE_FILLCOLOR] = 'white';
     style[mxConstants.STYLE_STROKEWIDTH] = 2;
@@ -23,6 +23,8 @@ function customizeElementStyle(graph)
     var operation = mxUtils.clone(style);
     operation[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_RECTANGLE;
     operation[mxConstants.STYLE_FILLCOLOR] = '#cdd7d6ff';
+    operation['minWidth'] = '200'; 
+    operation['minHeight'] = '25'; 
     operation[mxConstants.STYLE_ALIGN] = 'left';
     graph.getStylesheet().putCellStyle('process', operation);
 
